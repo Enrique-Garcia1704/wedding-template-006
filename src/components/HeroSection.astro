@@ -1,0 +1,81 @@
+---
+
+
+---
+
+<section class="relative min-h-screen flex flex-col items-center justify-center px-6 py-12 overflow-hidden">
+  <div class="hero-img animate-fade-scale">
+  </div>
+
+  <p class="hero-sub font-body text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4 animate-fade-up" style="animation-delay: 0.3s">
+    Nos casamos
+  </p>
+
+  <h1 class="font-display text-5xl md:text-7xl font-semibold text-foreground text-center leading-tight animate-fade-up" style="animation-delay: 0.5s">
+    Valentina
+  </h1>
+
+  <div class="my-3 animate-fade-scale" style="animation-delay: 0.8s">
+    <span class="rainbow-text font-elegant text-3xl md:text-4xl italic">&amp;</span>
+  </div>
+
+  <h1 class="font-display text-5xl md:text-7xl font-semibold text-foreground text-center leading-tight animate-fade-up" style="animation-delay: 0.7s">
+    Carolina
+  </h1>
+
+  <div class="mt-8 h-[2px] w-32 rounded-full rainbow-border animate-scale-x" style="animation-delay: 1.2s"></div>
+
+  <p class="mt-6 font-elegant text-xl md:text-2xl text-muted-foreground italic animate-fade-in" style="animation-delay: 1.5s">
+    "El amor no tiene fronteras"
+  </p>
+
+  <div class="mt-10 animate-fade-up" style="animation-delay: 1.8s">
+    <a
+      href="#detalles"
+      class="font-body text-xs tracking-[0.2em] uppercase text-primary border border-primary rounded-full px-8 py-3 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+    >
+      Ver invitación
+    </a>
+  </div>
+</section>
+
+<style>
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .animate-fade-scale {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeScale 1.2s ease forwards;
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .animate-scale-x {
+    opacity: 0;
+    transform: scaleX(0);
+    animation: scaleX 0.8s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeScale {
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  @keyframes scaleX {
+    to { opacity: 1; transform: scaleX(1); }
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+const clabe = "0123 4567 8901 2345 67";
+---
+
+<section class="py-16 px-6">
+  <h2 class="font-display text-3xl md:text-4xl text-center text-foreground mb-2 animate-fade-in">
+    Mesa de Regalos
+  </h2>
+  <div class="flex justify-center mb-10">
+    <div class="h-[2px] w-20 rounded-full rainbow-border"></div>
+  </div>
+
+  <div class="max-w-md mx-auto text-center animate-fade-up">
+    <div class="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mx-auto mb-4 text-primary">
+      <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+    </div>
+
+    <p class="font-elegant text-lg text-foreground italic mb-6">
+      Tu presencia es nuestro mejor regalo. Pero si deseas hacernos un obsequio, te compartimos nuestra cuenta:
+    </p>
+
+    <div class="bg-card border border-border rounded-lg p-5">
+      <p class="font-body text-xs tracking-[0.1em] uppercase text-muted-foreground mb-1">CLABE Interbancaria</p>
+      <p id="clabe-text" class="font-display text-lg text-foreground tracking-wider mb-3">{clabe}</p>
+      <button
+        id="copy-btn"
+        class="flex items-center justify-center gap-2 mx-auto text-primary font-body text-sm hover:opacity-70 transition-opacity"
+      >
+        <svg id="copy-icon" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span id="copy-label">Copiar CLABE</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ clabe }}>
+  document.getElementById("copy-btn").addEventListener("click", () => {
+    navigator.clipboard.writeText(clabe.replace(/\s/g, ""));
+    document.getElementById("copy-label").textContent = "Copiado";
+    document.getElementById("copy-icon").innerHTML = `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>`;
+    setTimeout(() => {
+      document.getElementById("copy-label").textContent = "Copiar CLABE";
+      document.getElementById("copy-icon").innerHTML = `<rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>`;
+    }, 2000);
+  });
+</script>
+
+<style>
+  .animate-fade-in { opacity: 0; animation: fadeIn 0.8s ease forwards; }
+  .animate-fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s ease forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+</style>

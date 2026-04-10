@@ -1,0 +1,53 @@
+---
+const targetDate = "2026-06-20T17:00:00";
+const units = ["Días", "Horas", "Min", "Seg"];
+---
+
+<section class="py-16 px-6">
+  <div class="flex justify-center gap-4 md:gap-6 animate-fade-up">
+    {units.map((label) => (
+      <div class="flex flex-col items-center bg-card rounded-lg p-4 min-w-[70px] shadow-sm border border-border">
+        <span
+          id={`countdown-${label.toLowerCase()}`}
+          class="font-display text-3xl md:text-4xl font-bold text-primary"
+        >
+          00
+        </span>
+        <span class="font-body text-[10px] tracking-[0.15em] uppercase text-muted-foreground mt-1">
+          {label}
+        </span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script define:vars={{ targetDate }}>
+  function update() {
+    const diff = new Date(targetDate).getTime() - Date.now();
+    const d = diff > 0 ? Math.floor(diff / 86400000) : 0;
+    const h = diff > 0 ? Math.floor((diff / 3600000) % 24) : 0;
+    const m = diff > 0 ? Math.floor((diff / 60000) % 60) : 0;
+    const s = diff > 0 ? Math.floor((diff / 1000) % 60) : 0;
+
+    const pad = (n) => String(n).padStart(2, "0");
+    document.getElementById("countdown-días").textContent = pad(d);
+    document.getElementById("countdown-horas").textContent = pad(h);
+    document.getElementById("countdown-min").textContent = pad(m);
+    document.getElementById("countdown-seg").textContent = pad(s);
+  }
+
+  update();
+  setInterval(update, 1000);
+</script>
+
+<style>
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

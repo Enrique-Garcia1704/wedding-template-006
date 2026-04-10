@@ -1,0 +1,100 @@
+---
+---
+
+<section class="py-16 px-6">
+  <h2 class="font-display text-3xl md:text-4xl text-center text-foreground mb-2 animate-fade-in">
+    Confirma tu Asistencia
+  </h2>
+  <div class="flex justify-center mb-10">
+    <div class="h-[2px] w-20 rounded-full rainbow-border"></div>
+  </div>
+
+  <form id="rsvp-form" class="max-w-md mx-auto space-y-5 animate-fade-up">
+    <div>
+      <label class="font-body text-xs tracking-[0.1em] uppercase text-muted-foreground block mb-1.5">
+        Tu nombre completo *
+      </label>
+      <input
+        id="rsvp-name"
+        required
+        name="name"
+        class="w-full bg-card border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
+        placeholder="Nombre y apellido"
+      />
+    </div>
+
+    <div>
+      <label class="font-body text-xs tracking-[0.1em] uppercase text-muted-foreground block mb-1.5">
+        Número de invitados
+      </label>
+      <select
+        name="guests"
+        class="w-full bg-card border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
+      >
+        <option value="1">1 persona</option>
+        <option value="2">2 personas</option>
+        <option value="3">3 personas</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="font-body text-xs tracking-[0.1em] uppercase text-muted-foreground block mb-1.5">
+        Restricciones alimentarias
+      </label>
+      <input
+        name="dietary"
+        class="w-full bg-card border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
+        placeholder="Vegano, sin gluten, etc."
+      />
+    </div>
+
+    <div>
+      <label class="font-body text-xs tracking-[0.1em] uppercase text-muted-foreground block mb-1.5">
+        Mensaje para las novias 💕
+      </label>
+      <textarea
+        name="message"
+        rows="3"
+        class="w-full bg-card border border-border rounded-lg px-4 py-3 font-body text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition resize-none"
+        placeholder="Escribe un mensaje especial..."
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-primary text-primary-foreground font-body text-sm tracking-[0.1em] uppercase py-3.5 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+    >
+      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Confirmar Asistencia
+    </button>
+  </form>
+
+  <div id="rsvp-success" class="hidden max-w-md mx-auto text-center animate-fade-scale">
+    <svg class="w-16 h-16 text-primary mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <h3 class="font-display text-2xl text-foreground mb-2">¡Gracias, <span id="rsvp-thanks-name"></span>!</h3>
+    <p class="font-body text-muted-foreground">Tu confirmación ha sido recibida. ¡Nos emociona que nos acompañes!</p>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("rsvp-form") as HTMLFormElement;
+  const success = document.getElementById("rsvp-success")!;
+  const thanksName = document.getElementById("rsvp-thanks-name")!;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = (document.getElementById("rsvp-name") as HTMLInputElement).value;
+    thanksName.textContent = name;
+    form.classList.add("hidden");
+    success.classList.remove("hidden");
+  });
+</script>
+
+<style>
+  .animate-fade-in { opacity: 0; animation: fadeIn 0.8s ease forwards; }
+  .animate-fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s ease forwards; }
+  .animate-fade-scale { animation: fadeScale 0.6s ease forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+</style>

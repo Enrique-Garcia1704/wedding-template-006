@@ -1,0 +1,54 @@
+---
+const events = [
+  { time: "5:00 PM", title: "Ceremonia", description: "Celebración del amor", icon: "heart" },
+  { time: "6:00 PM", title: "Cóctel", description: "Brindis y canapés", icon: "utensils" },
+  { time: "7:00 PM", title: "Recepción", description: "Cena y música", icon: "music" },
+  { time: "8:30 PM", title: "Primer Baile", description: "Nuestro momento especial", icon: "party" },
+  { time: "9:00 PM", title: "Fiesta", description: "¡A celebrar!", icon: "camera" },
+];
+
+const icons: Record<string, string> = {
+  heart: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  utensils: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>`,
+  music: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
+  party: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11v0c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98v0C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2z"/></svg>`,
+  camera: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>`,
+};
+---
+
+<section class="py-16 px-6 bg-card">
+  <h2 class="font-display text-3xl md:text-4xl text-center text-foreground mb-2 animate-fade-in">
+    Itinerario
+  </h2>
+  <div class="flex justify-center mb-10">
+    <div class="h-[2px] w-20 rounded-full rainbow-border"></div>
+  </div>
+
+  <div class="max-w-sm mx-auto relative">
+    <div class="absolute left-5 top-0 bottom-0 w-[2px] bg-border"></div>
+    <div class="space-y-8">
+      {events.map((event, i) => (
+        <div
+          class="flex gap-4 relative animate-fade-up"
+          style={`animation-delay: ${i * 0.1}s`}
+        >
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary border-2 border-primary flex items-center justify-center z-10 text-primary">
+            <Fragment set:html={icons[event.icon]} />
+          </div>
+          <div class="pt-1">
+            <p class="font-body text-xs tracking-[0.1em] uppercase text-muted-foreground">{event.time}</p>
+            <p class="font-elegant text-xl text-foreground font-semibold">{event.title}</p>
+            <p class="font-body text-sm text-muted-foreground">{event.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-fade-in { opacity: 0; animation: fadeIn 0.8s ease forwards; }
+  .animate-fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.5s ease forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+</style>
